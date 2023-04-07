@@ -14,7 +14,7 @@ export default function Profile() {
         priority
       ></Image>
       <div className="flex flex-col items-center">
-        <h1 className="text-2xl font-bold">{"Hi, I'm hazzun"}</h1>
+        <h1 className="text-2xl font-bold">{"안녕, 내 이름은 노하준"}</h1>
         <span className="text-lg font-semibold">Front-end Engineer</span>
         <span className="text-sm">중요한건 꺾였는데도 그냥 하는 마음</span>
         <button className="rounded-lg bg-yellow-300 px-4 mt-2">

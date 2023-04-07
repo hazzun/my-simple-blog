@@ -7,12 +7,12 @@ type Props = {
 };
 
 export default function PostGrid({ post }: Props) {
-  console.log(post.path);
+  // console.log(post.path);
   return (
     <Link
       href={`/posts/${post.path}`}
       key={post.path}
-      className="m-2 shadow-lg flex flex-col items-center"
+      className="shadow-md flex flex-col items-center hover:shadow-2xl"
     >
       <Image
         src={`/images/posts/${post.path}.png`}
@@ -21,7 +21,7 @@ export default function PostGrid({ post }: Props) {
         height={100}
         className="w-full rounded-md overflow-hidden"
       />
-      <time className="self-end">{post.date.toString()}</time>
+      <time className="self-end text-gray-500">{post.date.toString()}</time>
       <div className="font-bold">{post.title}</div>
       <div className="w-full truncate text-center">{post.description}</div>
       <div className="bg-green-300 opacity-60 px-2 py-1 rounded-lg my-4 text-sm">
