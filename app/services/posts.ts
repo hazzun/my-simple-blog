@@ -10,6 +10,8 @@ export type Post = {
   featured: boolean;
 };
 
+export type PostData = Post & { content: string };
+
 // Post의 배열을 반환하는 Promise
 export async function getPosts(): Promise<Post[]> {
   const filePath = path.join(process.cwd(), "data", "posts.json");
@@ -23,4 +25,16 @@ export async function getPosts(): Promise<Post[]> {
 export async function getFeaturedPost(path: string): Promise<Post | undefined> {
   const posts = await getPosts();
   return posts.find((item) => item.path === path);
+}
+
+export async function getPostData(fileName: string): Promise<PostData> {
+  const filePath = path.join(process.cwd(), "data", "posts", `${fileName}.md`);
+  const metadata = await getPosts().then((posts) =>
+    posts.find((post) => post.path === fileName)
+  );
+  if (!metadata)
+    throw new Error(`${fileName}에 해당하는 포스트를 찾을 수 없음`);
+
+  const content = await readFile(filePath, "utf-8");
+  return { ...metadata, content };
 }
