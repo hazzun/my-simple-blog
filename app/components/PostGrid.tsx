@@ -1,32 +1,15 @@
 import { Post } from "../services/posts";
-import Image from "next/image";
-import Link from "next/link";
+import PostCard from "./PostCard";
 
-type Props = {
-  post: Post;
-};
-
-export default function PostGrid({ post }: Props) {
-  // console.log(post.path);
+type Props = { posts: Post[] };
+export default function PostsGrid({ posts }: Props) {
   return (
-    <Link
-      href={`/posts/${post.path}`}
-      key={post.path}
-      className="shadow-md flex flex-col items-center hover:shadow-2xl"
-    >
-      <Image
-        src={`/images/posts/${post.path}.png`}
-        alt="image"
-        width={100}
-        height={100}
-        className="w-full rounded-md overflow-hidden"
-      />
-      <time className="self-end text-gray-500">{post.date.toString()}</time>
-      <div className="font-bold">{post.title}</div>
-      <div className="w-full truncate text-center">{post.description}</div>
-      <div className="bg-green-300 opacity-60 px-2 py-1 rounded-lg my-4 text-sm">
-        {post.category}
-      </div>
-    </Link>
+    <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {posts.map((post) => (
+        <li key={post.path}>
+          <PostCard post={post} />
+        </li>
+      ))}
+    </ul>
   );
 }
